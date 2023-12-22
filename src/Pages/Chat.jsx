@@ -90,6 +90,10 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: 25% 75%;
     background-color: #0f0f1d;
+    .mobile-contacts{
+          overflow: hidden;
+          height: 100%;
+        }
     @media only screen and (max-width: 1200px){//mobile screen
         grid-template-columns: 45% 55%;
     }
@@ -100,10 +104,6 @@ const Container = styled.div`
         grid-template-columns: 100% 0%;
         .mobile-chat{
           display: none;
-        }
-        .mobile-contacts{
-          overflow: hidden;
-          height: 100%;
         }
         .cont{
           display: none;
