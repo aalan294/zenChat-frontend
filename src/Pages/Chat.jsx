@@ -101,7 +101,7 @@ const Container = styled.div`
         grid-template-columns: 40% 60%;
     }
     @media only screen and (max-width: 600px){//mobile screen
-        height: 100vh;
+        height: 90vh;
         grid-template-columns: 100% 0%;
         .mobile-chat{
           display: none;
