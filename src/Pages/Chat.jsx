@@ -101,7 +101,8 @@ const Container = styled.div`
         grid-template-columns: 40% 60%;
     }
     @media only screen and (max-width: 600px){//mobile screen
-        height: 87vh;
+        height: 90vh;
+        width: 100%;
         grid-template-columns: 100% 0%;
         .mobile-chat{
           display: none;
@@ -113,6 +114,12 @@ const Container = styled.div`
           display: contents;
         }
     }
+  }
+  @media only screen and (max-width: 600px){//mobile screen
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    background-color: #17172c;
   }
 `
 export default Chat
