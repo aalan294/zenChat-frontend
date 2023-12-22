@@ -27,6 +27,9 @@ const Chat = () => {
     }
     else{
       setCurrentUser(JSON.parse(localStorage.getItem('chat-app-user')))
+        if(!JSON.parse(localStorage.getItem('chat-app-user')).isAvatarImage){
+          navigate('/avatar')
+        }
       setLoader(true)
     }
   },[])
