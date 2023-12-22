@@ -114,8 +114,7 @@ const Container = styled.div`
     }
     .avatars{
         display: flex;
-        justify-content:center;
-        gap: 6rem;
+        justify-content:space-evenly;
         align-items: center;
         width: 100%;
         .avatar{
@@ -124,6 +123,12 @@ const Container = styled.div`
             border-radius: 50%;
             img{
                 object-fit: cover;
+            }
+            @media only screen and (max-width: 600px){//mobile screen
+                width: 4rem;
+                img{
+                    width: 100%;
+                }
             }
         }
         .selected{
