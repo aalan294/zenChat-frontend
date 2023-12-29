@@ -4,7 +4,6 @@ import Register from './Pages/Register'
 import Login from './Pages/Login'
 import Chat from './Pages/Chat'
 import Avatar from './Pages/Avatar'
-import ChatPage from './Components/ChatPage'
 const App = () => {
   return (
     <BrowserRouter>
