@@ -20,7 +20,10 @@ const Chat = () => {
     pauseOnHover:true,
     draggable:true,
     theme:"dark"
-}
+  }
+  const headers = {
+    Authorization: `Bearer ${JSON.parse(localStorage.getItem('chat-app-user')).token}`,
+  }
   useEffect(()=>{
     if(!localStorage.getItem('chat-app-user')){
       navigate('/login')
@@ -38,14 +41,21 @@ const Chat = () => {
       socket.current = io("https://zenchat-backend.onrender.com")
       socket.current.emit("add-user",currentUser._id)
     }
+    //@testing@@@@@@@@@@@@@@@@@@@@
+    // if(currentUser){
+    //   socket.current = io("http://localhost:3500")
+    //   socket.current.emit("add-user",currentUser._id)
+    // }
   },[currentUser])
   useEffect(()=>{
     const fetch = async()=>{
       try {
         if(currentUser){
-          const {data} = await api.get(`/users/${currentUser._id}`)
+          const {data} = await api.get(`/users/${currentUser._id}`,{headers})
           if(data.status===false){
             toast.error(data.message,toastOption)
+            localStorage.removeItem('chat-app-user')
+            navigate('/login')
           }
           else{
             setContacts(data.data)
@@ -67,10 +77,10 @@ const Chat = () => {
     <Container>
       <div className={`container `}>
               <div className={`mobile-contacts ${currentChat!==undefined?"cont":""}`}>
-              <Contacts contacts={contacts} currentUser={currentUser} changeChat={changeChat}  />
+              <Contacts contacts={contacts} currentUser={currentUser} changeChat={changeChat} headers={headers}  />
               </div>
               <div className={`mobile-chat ${currentChat?"chat":""}`}>
-              <ChatPage currentUser={currentUser} currentChat={currentChat} setCurrentChat={setCurrentChat} socket={socket} />
+              <ChatPage currentUser={currentUser} currentChat={currentChat} setCurrentChat={setCurrentChat} socket={socket} headers={headers} />
             </div>
         </div>
     </Container>

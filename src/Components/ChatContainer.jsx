@@ -5,7 +5,7 @@ import {IoMdSend} from 'react-icons/io'
 import api from '../Utils/api'
 
 
-const ChatContainer = ({currentChat,currentUser,setCurrentChat,socket}) => {
+const ChatContainer = ({currentChat,currentUser,setCurrentChat,socket,headers}) => {
     const [msg,setMsg] = useState('')
     const [messages,setMessages] = useState([])
     const [arrivalMessage,setArrivalMessage] = useState(null)
@@ -27,7 +27,7 @@ const ChatContainer = ({currentChat,currentUser,setCurrentChat,socket}) => {
                     const response = await api.post('/messages/inbox',{
                         from:currentUser._id,
                         to: currentChat._id
-                    })
+                    },{headers})
                     setMessages(response.data)
                 } catch (error) {
                     console.log(error.message)
@@ -57,7 +57,7 @@ const ChatContainer = ({currentChat,currentUser,setCurrentChat,socket}) => {
                     from: currentUser._id,
                     to: currentChat._id,
                     message: message
-                })
+                },{headers})
         } catch (error) {
             console.log(error.message)
         }

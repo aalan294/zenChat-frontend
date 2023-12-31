@@ -32,7 +32,10 @@ const Avatar = () => {
             }
             else{
                 let local = await JSON.parse(localStorage.getItem('chat-app-user'))
-                const {data} = await api.put(`users/avatar/${local._id}`,{isAvatarImage:true,AvatarImage:avatars[selectedAvatars]})
+                const headers = {
+                    Authorization: `Bearer ${local.token}`,
+                  }
+                const {data} = await api.put(`users/avatar/${local._id}`,{isAvatarImage:true,AvatarImage:avatars[selectedAvatars]},{headers})
                 if(data.status === false){
                     toast.error(data.message,toastOption)
                 }
