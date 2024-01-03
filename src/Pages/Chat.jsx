@@ -13,6 +13,7 @@ const Chat = () => {
   const [contacts,setContacts] = useState([])
   const [currentChat,setCurrentChat] = useState(undefined)
   const [loader,setLoader] = useState(false)
+  const [headers,setHeaders] = useState(undefined)
   const socket = useRef()
   const toastOption = {
     position:'bottom-right',
@@ -21,15 +22,15 @@ const Chat = () => {
     draggable:true,
     theme:"dark"
   }
-  const headers = {
-    Authorization: `Bearer ${JSON.parse(localStorage.getItem('chat-app-user')).token}`,
-  }
   useEffect(()=>{
     if(!localStorage.getItem('chat-app-user')){
       navigate('/login')
     }
     else{
       setCurrentUser(JSON.parse(localStorage.getItem('chat-app-user')))
+      setHeaders({
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem('chat-app-user')).token}`,
+      })
         if(!JSON.parse(localStorage.getItem('chat-app-user')).isAvatarImage){
           navigate('/avatar')
         }
